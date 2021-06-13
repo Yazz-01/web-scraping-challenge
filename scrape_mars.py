@@ -13,11 +13,16 @@ from pprint import pprint
 import pandas as pd
 import requests
 import regex as re
+import json
 
+#--------------------------------------------------------------
 
+#                        Scraping Fuction
+#--------------------------------------------------------------
 
 # In[170]:
-
+def scrape_mars():
+    scrape_results = {}
 
 # Set up Splinter
 # Choose the executable path to driver for MAC users
@@ -180,6 +185,8 @@ soup=bs(html, 'html.parser')
 # Create a list for the full images url's
 hemispheres_img_urls = []
 
+
+
 # Retrieve all items that contain mars hemispheres inform action
 items = browser.find_by_css('a.product-item img')
 
@@ -215,7 +222,7 @@ for x in range(len(items)):
 # In[183]:
 
 
-print(hemispheres_img_urls)
+scrape_results['Mars_Hemisphere_images'] = hemisphere_images
 
 
 # In[184]:
@@ -230,4 +237,4 @@ mars_info
 
 # Quit the browser
 browser.quit()
-
+return scrape_results
